@@ -1,0 +1,30 @@
+{
+  "name": "synchrix",
+  "version": "1.0.0",
+  "description": "Synchrix is a modern real-time chat application built with the MERN stack (MongoDB, Express, React, Node.js) and powered by Socket.IO for fast and scalable communication. It supports seamless one-to-one messaging, dynamic group chats, and advanced group management (create, update, delete groups, add/remove members, assign/revoke admin roles). Synchrix also features instant online/offline presence updates, real-time message editing and deletion, and smooth synchronization across all devices—keeping every conversation perfectly in sync.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chat",
+    "real-time",
+    "socket.io",
+    "messaging",
+    "one-to-one",
+    "group-chat",
+    "mern",
+    "mongodb",
+    "express",
+    "react",
+    "nodejs",
+    "websocket",
+    "online-status",
+    "synchronization",
+    "communication",
+    "chat-app",
+    "collaboration"
+  ],
+  "author": "Usman Hameed",
+  "license": "ISC"
+}
