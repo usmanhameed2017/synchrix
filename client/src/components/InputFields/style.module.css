@@ -1,0 +1,39 @@
+.input {
+    background-color: white;
+    border: 1px solid #2c2f3a;
+    color: #2c2f3a;
+    padding: 10px 12px;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.input:focus {
+    border-color: #00bcd4;
+    box-shadow: 0 2px 15px #00bcd4;
+    color: #00bcd4;
+    outline: none;
+}
+
+.passwordFieldWrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    right: 21px;
+    bottom: 12.5px;
+    cursor: pointer;
+    color: #00bcd4;
+    font-size: 1.1rem;
+}
+
+.errorMessage {
+    color: red;
+    display: block;
+    font-weight: 400;      
+    margin-top: 2px;
+    font-size: 1rem;
+    text-align: left;
+}
