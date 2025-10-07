@@ -1,0 +1,17 @@
+.buttonTheme {
+  padding: 0.7rem 1.5rem;
+  background-color: #3a506b; /* Dark bluish button */
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.buttonTheme:hover {
+  background-color: #00bcd4; /* Cyan highlight on hover */
+  color: #1e1f26;
+  box-shadow: 0px 6px 15px #00bcd4;
+}
