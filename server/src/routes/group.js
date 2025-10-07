@@ -1,6 +1,5 @@
 const { createGroup, fetchAllGroups, deleteGroup, editGroup, addNewMembersToGroup, 
-removeMember, makeGroupAdmin, 
-removeFromAdmin} = require("../controllers/group");
+removeMember, makeGroupAdmin, removeFromAdmin } = require("../controllers/group");
 const { authentication } = require("../middlewares/auth");
 
 // Router instance
