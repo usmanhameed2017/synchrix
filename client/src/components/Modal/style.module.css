@@ -1,0 +1,23 @@
+.modal :global(.modal-content) {
+  background-color: #12151d !important;
+  color: #e5e7eb !important;
+  border-radius: 12px !important;
+  box-shadow: 1px 1px 17px #00bcd4;
+}
+
+.modalHeader {
+  border: none;
+}
+
+.modalTitle {
+  font-weight: bold;
+  color: #00bcd4;
+  text-align: center;
+}
+
+.modalBody {
+  color: #cbd5e1;
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 20px;
+}
