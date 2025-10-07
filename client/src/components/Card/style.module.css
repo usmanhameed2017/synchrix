@@ -1,0 +1,90 @@
+.cardWrapper {
+  box-shadow: 2px 4px 20px #00bcd4;
+  border-radius: 15px;
+  margin-left: 10px;
+}
+
+.card {
+  background-color: #12151d;
+  border: none;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  min-height: 350px;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+.cardHeader {
+  background-color: transparent;
+  font-weight: bold;
+  font-size: 1.9rem;
+  color: #00bcd4;
+  text-align: center;
+  padding: 16px 12px;
+  border: none;
+}
+
+.cardBody {
+  flex-grow: 1;
+  padding: 30px;
+  margin: 10px 20px;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 130px;
+  max-height: 130px;
+}
+
+.cardFooter {
+  border: none;
+  padding: 20px;
+}
+
+.cardTitle {
+  font-size: 1.4rem;
+  color: #f0fdfa;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.cardText {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #e0f2f1;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+@media (max-width: 576px) {
+  .card {
+    height: 350px;          
+    min-height: 350px;    
+  }
+
+  .cardBody {
+    margin: 10px 10px;     
+    padding: 20px;    
+    overflow-y: hidden;
+    height: 130px;
+    min-height: 130px;  
+  }
+
+  .cardHeader {
+    font-size: 1.5rem;
+  }
+
+  .cardTitle {
+    font-size: 1.2rem;
+  }
+
+  .cardText {
+    font-size: 0.9rem;
+  }
+  .cardFooter {
+    border: none;
+    padding: 10px;
+  }
+}
