@@ -19,6 +19,7 @@ function PrivateChats()
     const { selectedUser, privateMessages, setPrivateMessages, selectedUserRef } = useChat();
     const [error, setError] = useState("");
     const [editFieldId, setEditFieldId] = useState(null);
+    const [oldMessage, setOldMessage] = useState("");
     const [isTyping, setTyping] = useState(false);
     const [typerName, setTyperName] = useState("");
 
@@ -37,22 +38,31 @@ function PrivateChats()
     // Edit message
     const editMessage = useCallback((message) => {
         if(!message?._id) return showError("Message ID is missing");
+        setOldMessage(message.message);
         setEditFieldId(message._id);
     },[]);
 
     // Update message
     const updateMessage = useCallback(async (payload) => {
         if(!payload?._id) return showError("Message ID is missing");
+        // If message was not modified
+        if(payload.message.trim() === oldMessage.trim())
+        {
+            setEditFieldId(null);
+            setOldMessage("");
+            return;
+        }
+
         try 
         {
-            await api.patch({ url:`/chat/private-message/updateMessage/${payload._id}`, payload });
+            await api.patch({ url:`/chat/private-message/updateMessage/${payload._id}`, payload, enableSuccessMessage:false });
             setEditFieldId(null);
         } 
         catch(error) 
         {
             console.log(error.message);
         }
-    },[]);
+    },[oldMessage]);
 
     // Delete message
     const deleteMessage = useCallback(async (message) => {
@@ -60,7 +70,7 @@ function PrivateChats()
         sweetAlert.confirm({ title:"Confirm?", text:"Are you sure to delete this message?", fn:async () => {
             try 
             {
-                await api.delete({ url:`chat/private-message/deleteMessage/${message._id}` });
+                await api.delete({ url:`chat/private-message/deleteMessage/${message._id}`, enableSuccessMessage:false });
             } 
             catch(error) 
             {
