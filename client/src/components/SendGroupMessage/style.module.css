@@ -1,0 +1,43 @@
+/* Input wrapper */
+.inputWrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Input field */
+.messageInput {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background-color: #3a3b3c;
+    color: #e4e6eb;
+    font-size: 14px;
+}
+
+/* Message placeholder */
+.messageInput::placeholder {
+    color: #b0b3b8;
+}
+
+.sendBtn {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 400ms ease-in-out;
+}
+
+.sendBtn:hover {
+    box-shadow: 2px 2px 12px #6a11cb;
+}
