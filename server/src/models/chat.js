@@ -20,6 +20,10 @@ const chatSchema = new Schema({
         type:Boolean,
         default:false
     },
+    isEdited:{
+        type:Boolean,
+        default: false
+    },
     conversationId: { 
         type:String, 
         index: true,
