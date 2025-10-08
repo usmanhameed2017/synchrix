@@ -1,0 +1,117 @@
+.sidebar {
+    background: #12151d;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease-in-out;
+    min-height: 100vh;
+    position: relative;
+    min-width: 270px;
+    width: 500px;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    font-size: 2rem;
+    font-weight: bold;
+    background: #00bcd4;
+    color: #12151d;
+}
+
+.logo span {
+    font-size: 1.4rem;
+    text-wrap: nowrap;
+}
+
+/* Nav */
+.nav {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    flex-grow: 1;
+    margin: 5px;
+}
+
+.heading {
+    color: #00bcd4;
+    font-size: 27px;
+    font-weight: bolder;
+    letter-spacing: 0.3px;
+    margin: 10px;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+    padding: 12px 18px;
+    color: #ddd;
+    text-decoration: none;
+    transition: background 0.2s;
+    font-size: 21px;
+    margin-top: 5px;
+}
+
+.navItem span {
+    font-size: 12px;
+    margin-left: auto;
+}
+
+.navItem:hover {
+    background: #1f2533;
+    color: #00bcd4;
+}
+
+.active {
+  background: #1f2533;
+  color: #00bcd4;
+}
+
+.logoutLink {
+    font-size: 22px;
+}
+
+/* Toggle button */
+.toggleBtn {
+    position: absolute;
+    bottom: 20px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background: #00bcd4;
+    color: #12151d;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.groupItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 5px 10px;
+}
+
+.menuWrapper {
+    position: relative;
+}
+
+.menuBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    padding: 4px;
+    transition: all 400ms ease-in-out;
+}
+
+.menuBtn:hover{
+    color: #00bcd4;
+}
