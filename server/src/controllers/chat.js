@@ -61,11 +61,19 @@ const fetchPrivateMessages = async (request, response) => {
 
 // Update private message
 const updatePrivateMessage = async (request, response) => {
+    const { message } = request.body;
     try 
     {
         // Update in database
-        const chat = await Chat.findByIdAndUpdate(request.params?.id, request.body, { new:true });
+        const chat = await Chat.findByIdAndUpdate(request.params?.id, { message }, { new:true });
         if(!chat) throw new ApiError(404, "Message not found");
+
+        // Mark message as edited
+        if(!chat.isEdited)
+        {
+            chat.isEdited = true;
+            await chat.save();
+        }
 
         // Broadcast
         const broadcast = new SocketIOService(request.io);
