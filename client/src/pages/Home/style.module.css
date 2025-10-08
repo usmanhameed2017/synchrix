@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #12151d;
+}
+
+/* Main Content */
+.main {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
