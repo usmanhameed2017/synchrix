@@ -32,7 +32,7 @@ function Input({ type, name, className, placeholder, required = false, accept, r
 
                 {/* Icon */}
                 <span className={styles.icon} onClick={() => setShowPassword(!showPassword)}>
-                    {showPassword ? <FaEyeSlash size={22} /> : <FaEye size={22} />}
+                    {showPassword ? <FaEye size={22} /> : <FaEyeSlash size={22} />}
                 </span>
             </div> 
             <span className={styles.errorMessage}> <ErrorMessage name={name} /> </span>          
