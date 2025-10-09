@@ -57,6 +57,7 @@ function PrivateChats()
         {
             await api.patch({ url:`/chat/private-message/updateMessage/${payload._id}`, payload, enableSuccessMessage:false });
             setEditFieldId(null);
+            setOldMessage("");
         } 
         catch(error) 
         {
@@ -147,12 +148,24 @@ function PrivateChats()
                         {/* Sender Messages */}
                         return (
                             <div key={chat?._id} className={styles.senderMessage}>
-                                {/* Message */}
-                                <span className="me-1"> {chat?.message} </span> 
+                                <span className="me-1">
+                                    {/* Message */}
+                                    {chat?.message}
+
+                                    {/* Message Bottom Content */}
+                                    <small className={styles.messageBottomSection}>
+                                        {/* Edit Flag */}
+                                        {chat?.isEdited && (
+                                            <> Edited </>
+                                        )}
+
+                                        {/* Timestamp */}
+                                        { getTime(chat?.createdAt) } 
+                                    </small>                                    
+                                </span>
+
                                 {/* Message menu popup */}
                                 <MenuPopup item={chat} options={messageMenuOptions} />
-                                {/* Timestamp */}
-                                <small className={styles.timestamp}> {getTime(chat?.createdAt)} </small>
                             </div>
                         );
                     }
@@ -161,11 +174,22 @@ function PrivateChats()
                         {/* Receiver Messages */}
                         return (
                             <div key={chat?._id} className={styles.receiverMessage}>
-                                {/* Message */}
-                                <span> {chat?.message} </span>
-                                {/* Timestamp */}
-                                <small className={styles.timestamp}> {getTime(chat?.createdAt)} </small>
-                            </div>                                
+                                <span> 
+                                    {/* Message */}
+                                    {chat?.message} 
+
+                                    {/* Message Bottom Content */}
+                                    <small className={styles.messageBottomSection}>
+                                        {/* Edit Flag */}
+                                        {chat?.isEdited && (
+                                            <> Edited </>
+                                        )}
+
+                                        {/* Timestamp */}
+                                        { getTime(chat?.createdAt) } 
+                                    </small>                                     
+                                </span>
+                            </div>                                                                                                
                         );
                     }
                 }
