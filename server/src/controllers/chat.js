@@ -203,11 +203,19 @@ const updateGroupMessage = async (request, response) => {
     const { id } = request.params || {};
     if(!id) throw new ApiError(404, "Chat ID is missing");
 
+    const { message } = request.body;
     try 
     {
         // Update in database
-        const chat = await Chat.findByIdAndUpdate(id, request.body, { new:true }).populate("from", "name");
+        const chat = await Chat.findByIdAndUpdate(id, { message }, { new:true }).populate("from", "name");
         if(!chat) throw new ApiError(404, "Message not found");
+
+        // Mark message as edited
+        if(!chat.isEdited)
+        {
+            chat.isEdited = true;
+            await chat.save();
+        }        
 
         // Broadcast
         const broadcast = new SocketIOService(request.io);
