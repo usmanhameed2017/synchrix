@@ -53,7 +53,7 @@ function GroupChats()
 
         try 
         {
-            await api.patch({ url:`/chat/group-message/updateMessage/${payload._id}`, payload });
+            await api.patch({ url:`/chat/group-message/updateMessage/${payload._id}`, payload, enableSuccessMessage:false });
             setEditFieldId(null);
             setOldMessage("");
         } 
@@ -61,7 +61,7 @@ function GroupChats()
         {
             console.log(error.message);
         }
-    },[]);
+    },[oldMessage]);
 
     // Delete message
     const deleteMessage = useCallback(async (message) => {
@@ -69,7 +69,7 @@ function GroupChats()
         sweetAlert.confirm({ title:"Confirm?", text:"Are you sure to delete this message?", fn:async () => {
             try 
             {
-                await api.delete({ url:`chat/group-message/deleteMessage/${message._id}` });
+                await api.delete({ url:`chat/group-message/deleteMessage/${message._id}`, enableSuccessMessage:false });
             } 
             catch(error) 
             {
