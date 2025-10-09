@@ -17,6 +17,7 @@ function GroupChats()
     const { selectedGroup, groupMessages, setGroupMessages, selectedGroupRef } = useChat();
     const [error, setError] = useState("");
     const [editFieldId, setEditFieldId] = useState(null);
+    const [oldMessage, setOldMessage] = useState("");
     const [isTyping, setTyping] = useState(false);
     const [typerName, setTyperName] = useState("");
 
@@ -35,16 +36,26 @@ function GroupChats()
     // Edit message
     const editMessage = useCallback((message) => {
         if(!message?._id) return showError("Message ID is missing");
+        setOldMessage(message.message);
         setEditFieldId(message._id);
     },[]);
 
     // Update message
     const updateMessage = useCallback(async (payload) => {
         if(!payload?._id) return showError("Message ID is missing");
+        // If message was not modified
+        if(payload.message.trim() === oldMessage.trim())
+        {
+            setEditFieldId(null);
+            setOldMessage("");
+            return;
+        }
+
         try 
         {
             await api.patch({ url:`/chat/group-message/updateMessage/${payload._id}`, payload });
             setEditFieldId(null);
+            setOldMessage("");
         } 
         catch(error) 
         {
@@ -131,15 +142,27 @@ function GroupChats()
                             </div>
                         );
 
-                        {/* Sender */}
+                        {/* Sender Messages */}
                         return (
-                            <div key={chat._id} className={styles.senderMessage}>
-                                {/* Message */}
-                                <span className="me-1"> {chat?.message} </span> 
+                            <div key={chat?._id} className={styles.senderMessage}>
+                                <span className="me-1">
+                                    {/* Message */}
+                                    {chat?.message}
+
+                                    {/* Message Bottom Content */}
+                                    <small className={styles.messageBottomSection}>
+                                        {/* Edit Flag */}
+                                        {chat?.isEdited && (
+                                            <> Edited </>
+                                        )}
+
+                                        {/* Timestamp */}
+                                        { getTime(chat?.createdAt) } 
+                                    </small>                                    
+                                </span>
+
                                 {/* Message menu popup */}
                                 <MenuPopup item={chat} options={messageMenuOptions} />
-                                {/* Timestamp */}
-                                <small className={styles.timestamp}> {getTime(chat?.createdAt)} </small>
                             </div>
                         );
                     }
@@ -148,10 +171,26 @@ function GroupChats()
                         {/* Receiver */}
                         return (
                             <div key={chat._id}>
+                                {/* Name */}
                                 <small className={styles.senderName}> {chat.from?.name} </small>
-                                <div className={styles.receiverMessage}>
-                                    <span> {chat.message}  </span>
-                                    <small className={styles.timestamp}> {getTime(chat?.createdAt)} </small>
+
+                                {/* Message Container */}
+                                <div key={chat?._id} className={styles.receiverMessage}>
+                                    <span> 
+                                        {/* Message */}
+                                        {chat?.message} 
+
+                                        {/* Message Bottom Content */}
+                                        <small className={styles.messageBottomSection}>
+                                            {/* Edit Flag */}
+                                            {chat?.isEdited && (
+                                                <> Edited </>
+                                            )}
+
+                                            {/* Timestamp */}
+                                            { getTime(chat?.createdAt) } 
+                                        </small>                                     
+                                    </span>
                                 </div> 
                             </div>
                         );
