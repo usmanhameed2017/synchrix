@@ -9,6 +9,7 @@ const { Server } = require("socket.io");
 const http = require("http");
 const socketAuthentication = require("./middlewares/socket");
 const SocketIOService = require("./service/socket");
+const compression = require("compression");
 
 // Express app
 const app = express();
@@ -25,6 +26,7 @@ app.use(cookieParser(cookieParserSecret));
 app.use(express.urlencoded({ extended:true, limit:"50kb" }));
 app.use(express.json({ limit:"50kb" }));
 app.use("/public", express.static(path.resolve("public")));
+app.use(compression());
 
 // Share io instance across all controllers
 app.use((request, response, next) => {
