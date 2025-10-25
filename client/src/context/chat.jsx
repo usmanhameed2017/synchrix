@@ -10,7 +10,6 @@ function ChatProvider({ children })
     const [selectedGroup, setSelectedGroup] = useState(null);
     const [privateMessages, setPrivateMessages] = useState([]);
     const [groupMessages, setGroupMessages] = useState([]);
-    const [showModal, setShowModal] = useState(false);
 
     // Global references
     const selectedUserRef = useRef(null);
@@ -18,8 +17,7 @@ function ChatProvider({ children })
 
     return (
         <ChatContext.Provider value={{ selectedUser, setSelectedUser, selectedGroup, setSelectedGroup, 
-        privateMessages, setPrivateMessages, groupMessages, setGroupMessages, showModal, setShowModal, 
-        selectedUserRef, selectedGroupRef }}>
+        privateMessages, setPrivateMessages, groupMessages, setGroupMessages, selectedUserRef, selectedGroupRef }}>
             { children }
         </ChatContext.Provider>
     );
