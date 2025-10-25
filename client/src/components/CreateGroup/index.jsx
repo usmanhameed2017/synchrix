@@ -2,17 +2,15 @@ import { useCallback } from 'react'
 import ModalBS from '../Modal';
 import FormikForm from '../FormikForm';
 import Input from '../InputFields';
-import { useChat } from '../../context/chat';
 import Button from '../Button';
 import { useUser } from '../../context/user';
 import { userData } from '../../utils/getUser';
 import api from '../../service/axios';
 
-function CreateGroup() 
+function CreateGroup({ showModal, handleCloseModal }) 
 {
     // Global state
     const { users } = useUser();
-    const { showModal, setShowModal } = useChat();
 
     // Initial values
     const initialValues = {
@@ -26,7 +24,7 @@ function CreateGroup()
         {
             await api.post({ url:"/group/create", payload });
             action.resetForm();
-            setShowModal(false);
+            handleCloseModal();
         } 
         catch(error) 
         {
@@ -37,7 +35,7 @@ function CreateGroup()
     return (
         <>
             {/* Modal */}
-            <ModalBS showModal={showModal} setShowModal={setShowModal} modalTitle="Create a Group">
+            <ModalBS showModal={showModal} handleCloseModal={handleCloseModal} modalTitle="Create a Group">
                 {/* Form */}
                 <FormikForm initialValues={initialValues} handlerFunction={createGroup}  className="/">
                     {/* Group Name */}
@@ -65,7 +63,7 @@ function CreateGroup()
                                 <Button type="submit"> Create </Button>  
                             </div>
                             <div>
-                                <Button type="button" onClick={ () => setShowModal(false) }> Cancel </Button>
+                                <Button type="button" onClick={handleCloseModal}> Cancel </Button>
                             </div>
                         </div>
                     </div>

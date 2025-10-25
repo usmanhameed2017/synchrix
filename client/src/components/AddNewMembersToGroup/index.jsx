@@ -8,7 +8,7 @@ import Input from '../InputFields';
 import Button from '../Button';
 import api from '../../service/axios';
 
-function AddNewMembersToGroup({ showModal, setShowModal }) 
+function AddNewMembersToGroup({ showModal, handleCloseModal }) 
 {
     // Global states
     const { selectedGroup, setSelectedGroup } = useChat();
@@ -33,7 +33,7 @@ function AddNewMembersToGroup({ showModal, setShowModal })
         {
             const response = await api.patch({ url:`/group/addNewMembers/${payload._id}`, payload });
             setSelectedGroup(response.data);
-            setShowModal(false);
+            handleCloseModal();
         } 
         catch(error) 
         {
@@ -44,7 +44,7 @@ function AddNewMembersToGroup({ showModal, setShowModal })
     return (
         <>
             {/* Modal For Adding New Members */}
-            <ModalBS showModal={showModal} setShowModal={setShowModal} modalTitle="Add New Members">
+            <ModalBS showModal={showModal} handleCloseModal={handleCloseModal} modalTitle="Add New Members">
                 <FormikForm initialValues={initialValues} validationSchema={validationSchema} handlerFunction={addNewMembers} className={`/`}>
                     {/* Members */}
                     <div className="form-group">
@@ -61,7 +61,7 @@ function AddNewMembersToGroup({ showModal, setShowModal })
                     {/* Buttons */}
                     <div className='d-flex mt-3 gap-2'>
                         <Button type="submit"> Save Changes </Button>
-                        <Button type="button" onClick={ () => setShowModal(false) }> Cancel </Button>
+                        <Button type="button" onClick={handleCloseModal}> Cancel </Button>
                     </div>
                 </FormikForm>
             </ModalBS>        

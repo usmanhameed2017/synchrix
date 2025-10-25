@@ -9,7 +9,7 @@ import sweetAlert from '../../utils/sweetAlert2';
 import { useCallback } from 'react';
 import api from '../../service/axios';
 
-function ViewGroupMembers({ showModal, setShowModal }) 
+function ViewGroupMembers({ showModal, handleCloseModal }) 
 {
     // Global states
     const { selectedGroup, selectedGroupRef } = useChat();
@@ -64,7 +64,7 @@ function ViewGroupMembers({ showModal, setShowModal })
   
     return (
         <>
-            <ModalBS showModal={showModal} setShowModal={setShowModal} modalTitle="Group Members">
+            <ModalBS showModal={showModal} handleCloseModal={handleCloseModal} modalTitle="Group Members">
                 {/* ======================================== ADMIN SECTION ======================================== */}
                 <h5 className={styles.heading}> <FaCrown size={25} /> Admins </h5>
 

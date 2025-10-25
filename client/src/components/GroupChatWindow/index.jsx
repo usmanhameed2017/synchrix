@@ -22,6 +22,10 @@ function GroupChatWindow()
     const [showModal1, setShowModal1] = useState(false);
     const [showModal2, setShowModal2] = useState(false);
 
+    // Handle close modals
+    const handleCloseModal1 = useCallback(() => setShowModal1(false), []);
+    const handleCloseModal2 = useCallback(() => setShowModal2(false), []);
+
     const { selectedGroup, setSelectedGroup, selectedGroupRef, groupMessages } = useChat();
     const { setGroups } = useUser();
 
@@ -146,10 +150,10 @@ function GroupChatWindow()
             </div>
 
             {/* Adding New Members To Group */}
-            <AddNewMembersToGroup showModal={showModal1} setShowModal={setShowModal1} />
+            <AddNewMembersToGroup showModal={showModal1} handleCloseModal={handleCloseModal1} />
 
             {/* View Group Members */}
-            <ViewGroupMembers showModal={showModal2} setShowModal={setShowModal2} />           
+            <ViewGroupMembers showModal={showModal2} handleCloseModal={handleCloseModal2} />           
         </>
     );
 }

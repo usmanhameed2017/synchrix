@@ -22,8 +22,12 @@ function Sidebar()
     // States
     const { users, setUsers, groups, setGroups } = useUser();
     const { userLogout } = useAuth();
-    const { setSelectedUser, setSelectedGroup, setShowModal, selectedGroupRef } = useChat();
+    const { setSelectedUser, setSelectedGroup, selectedGroupRef } = useChat();
     const [editFieldId, setEditFieldId] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+
+    // Close modal
+    const handleCloseModal = useCallback(() => setShowModal(false), []);
 
     // Fetch all users on page load
     useEffect(() => {
@@ -283,7 +287,7 @@ function Sidebar()
                 </nav>
 
                 {/* Create group */}
-                <CreateGroup />
+                <CreateGroup showModal={showModal} handleCloseModal={handleCloseModal} />
             </aside> 
         </>
     );
