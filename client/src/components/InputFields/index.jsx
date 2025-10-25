@@ -3,7 +3,7 @@ import { useState } from 'react';
 import styles from "./style.module.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-function Input({ type, name, className, placeholder, required = false, accept, rows, multiple, list, autoComplete, onChange, children }) 
+function Input({ type, name, className, placeholder, required = false, accept, rows, multiple, list, autoComplete, onChange, ref, children }) 
 {
     // Get field value for file handling
     const { setFieldValue } = useFormikContext();
@@ -42,7 +42,7 @@ function Input({ type, name, className, placeholder, required = false, accept, r
     // File
     if(type === "file") return (
         <>
-            <input type={type} name={name} className={input} accept={accept} multiple={multiple} required={required}
+            <input type={type} name={name} className={input} accept={accept} multiple={multiple} required={required} ref={ref}
             onChange={ (e) => {
                 // Formik value update
                 setFieldValue(name, multiple ? e.target.files : e.target.files[0]);
