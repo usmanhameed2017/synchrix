@@ -1,13 +1,18 @@
+import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import ProtectedRoute from "./pages/security/ProtectedRoutes";
+import { ToastContainer } from "react-toastify";
+
+// Context
 import AuthProvider from "./context/auth";
-import Home from "./pages/Home";
 import ChatProvider from "./context/chat";
 import UserProvider from "./context/user";
+import Loader from "./components/Loader";
 
+// Pages
+const Signup = lazy(() => import("./pages/Signup"));
+const Login = lazy(() => import("./pages/Login"));
+const ProtectedRoute = lazy(() => import("./pages/security/ProtectedRoutes"));
+const Home = lazy(() => import("./pages/Home"));
 
 function App() 
 {
@@ -16,16 +21,19 @@ function App()
       <ChatProvider>
         <AuthProvider>
           <UserProvider>
-            <Routes>
-              <Route path="/" element={ <Login /> } />
-              <Route path="/login" element={ <Login /> } />
-              <Route path="/signup" element={ <Signup /> } />
+            {/* Lazy Load */}
+            <Suspense fallback={ <Loader text="Loading" size="medium" /> }>
+              <Routes>
+                <Route path="/" element={ <Login /> } />
+                <Route path="/login" element={ <Login /> } />
+                <Route path="/signup" element={ <Signup /> } />
 
-              {/* Protected Route */}
-              <Route element={ <ProtectedRoute /> }>
-                <Route path="/home" element={ <Home /> } />
-              </Route>
-            </Routes>
+                {/* Protected Route */}
+                <Route element={ <ProtectedRoute /> }>
+                  <Route path="/home" element={ <Home /> } />
+                </Route>
+              </Routes>
+            </Suspense>
             <ToastContainer />
           </UserProvider>
         </AuthProvider>
