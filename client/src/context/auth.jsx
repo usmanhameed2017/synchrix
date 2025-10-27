@@ -4,7 +4,7 @@ import { setLoadingFunction, setSavingFunction } from '../utils/loadingManager';
 import { connectSocket, disconnectSocket } from '../service/socket';
 import { useChat } from './chat';
 import { getUser } from '../utils/getUser';
-import api from '../service/axios';
+import api, { initCsrfToken } from '../service/axios';
 
 // Create auth context
 const AuthContext = createContext();
@@ -95,6 +95,7 @@ function AuthProvider({ children })
 
     // On app load
     useEffect(() => {
+        initCsrfToken();
         isAuthenticated();
         setLoadingFunction(setLoading);
         setSavingFunction(setSavingChanges);
