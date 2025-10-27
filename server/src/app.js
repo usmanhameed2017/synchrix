@@ -44,8 +44,8 @@ const socketio = new SocketIOService(io);
 socketio.connect();
 
 // ************* IMPORT ROUTES ************* //
-const userRouter = require("./routes/user");
 const authRouter = require("./routes/auth");
+const userRouter = require("./routes/user");
 const chatRouter = require("./routes/chat");
 const groupRouter = require("./routes/group");
 
