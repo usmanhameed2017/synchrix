@@ -1,6 +1,5 @@
 import axios from "axios";
 import { backendURL } from "../constants";
-// import { csrfToken } from "../utils/token";
 import { startLoading, startSaving, stopLoading, stopSaving } from '../utils/loadingManager';
 import { showSuccess, showError } from '../utils/toasterMessage';
 
@@ -14,9 +13,15 @@ const client = axios.create({
     xsrfHeaderName: 'CSRF-Token'
 });
 
+// Initialize CSRF Token
+export const initCsrfToken = async () => {
+    const response = await client.get("/auth/csrfToken");
+    const token = response.data;
+    client.defaults.headers.common["CSRF-Token"] = token;
+};
+
 // Request interceptor
 client.interceptors.request.use(async (request) => {
-    // if(csrfToken) request.headers["CSRF-Token"] = csrfToken; // Inject token in header
     return request;
 }, (error) => {
     return Promise.reject(error);
