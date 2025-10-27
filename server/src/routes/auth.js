@@ -1,8 +1,11 @@
-const { signup, login, isAuthenticated, logout } = require("../controllers/auth");
+const { signup, login, isAuthenticated, logout, initCsrfToken } = require("../controllers/auth");
 const { authentication } = require("../middlewares/auth");
 
 // Router instance
 const authRouter = require("express").Router();
+
+// Initialize CSRF Token
+authRouter.route("/csrfToken").get(initCsrfToken);
 
 // Signup
 authRouter.route("/user/signup").post(signup);
