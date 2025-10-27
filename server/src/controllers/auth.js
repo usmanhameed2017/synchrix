@@ -1,9 +1,14 @@
 const { cookieOptions } = require("../config");
-// const Chat = require("../models/chat");
 const User = require("../models/user");
 const jwt = require("../service/auth-token");
 const ApiError = require("../utils/ApiError");
 const ApiResponse = require("../utils/ApiResponse");
+
+// Initialize CSRF Token
+const initCsrfToken = async (request, response) => {
+    return response.status(200)
+    .json(new ApiResponse(200, request.csrfToken(), "CSRF Token has been generated successfully"));
+};
 
 // User signup
 const signup = async (request, response) => {
@@ -53,4 +58,4 @@ const logout = async (request, response) => {
     .json(new ApiResponse(200, null, "Logout successfully"));
 };
 
-module.exports = { signup, login, isAuthenticated, logout };
+module.exports = { initCsrfToken, signup, login, isAuthenticated, logout };
