@@ -35,7 +35,7 @@ client.interceptors.response.use((response) => {
 }, (error) => {
     const data = error?.response?.data || null;
     const success = data?.success || false;
-    const message = data?.message || "An unknown error occur";
+    const message = data?.message || error.message || "An unknown error occur";
     const statusCode = error?.response?.status || null;
     const stack = error?.stack || null;  
     return Promise.reject({ data, message, success, statusCode, stack });
