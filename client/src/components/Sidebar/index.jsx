@@ -253,7 +253,7 @@ function Sidebar()
                                 <div style={{ width:"100%", marginBottom:"5px" }}>
                                     {/* Editing Field */}
                                     <FormikForm initialValues={{ _id:group?._id, name:group?.name }} handlerFunction={updateGroup} className="/">
-                                        <Input type="text" name="name" placeholder="Edit Name" required />
+                                        <Input type="text" name="name" className="input mt-3 mb-2" placeholder="Edit Name" required />
                                         <div className="d-flex mt-2 gap-2">
                                             <Button type="submit"> Save </Button>
                                             <Button type="button" onClick={() => setEditFieldId(null)}> Cancel </Button>
