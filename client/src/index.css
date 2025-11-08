@@ -8,104 +8,54 @@
 }
 
 body {
-  background-color: #121212;
+  background: radial-gradient(circle at 20% 20%, #3A9FFD, transparent 50%),
+  radial-gradient(circle at 80% 80%, #A020F0, transparent 50%), #0A0014;
+  /* background: linear-gradient(135deg, rgba(58,159,253,0.15) 0%, rgba(160,32,240,0.15) 100%), #0A0014;
+  backdrop-filter: blur(10px); */
   color: #ffffff;
   overflow-x: hidden;
 }
 
 a{
   text-decoration: none;
-  color: #00bcd4;
+  color: rgba(255,255,255,0.05);
 }
 
 .textTheme {
   color: #00bcd4;
 }
 
-.heroTitle {
-  font-size: 7rem;
-  margin-bottom: 60px;
-  font-weight: bold;
-  color: #00bcd4;
-  position: relative;
-}
-
-/* Icon animation */
-.icon {
-  font-size: 80px;
-  color: #00bcd4;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
-  text-shadow: 0 0 12px #00bcd4;
-}
-
-.icon::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #00bcd4 0%, transparent 70%);
-  animation: glowPulse 2.5s ease-in-out infinite;
-  z-index: 0;
-}
-
-@keyframes glowPulse {
-  0% {
-    transform: translate(-50%, -50%) scale(0.95);
-    opacity: 0.7;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.2);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(0.95);
-    opacity: 0.7;
-  }
-}
-
-.themeButton {
-  background-color: #0dcdbc;
-  color: #0e0f16;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 30px;
-  font-size: 1rem;
-  font-weight: 600;
-  width: 100%;
-  transition: background-color 0.3s ease;
-}
-
-.themeButton:hover {
-  background-color: #0bb0a4;
-}
-
 label {
-  color: #00bcd4;
-  font-size: 23px;
-  letter-spacing: 0.1px;
-  font-weight: 500;
+  color: #B3E9FF;
+  font-size: 19px;
+  font-weight: 100;
+  margin-bottom: 5px;
+  margin-left: 10px;
 }
 
 .input {
-  background-color: white;
-  border: 1px solid #2c2f3a;
-  color: #2c2f3a;
-  padding: 10px 12px;
-  border-radius: 8px;
+  background-color: #2c2f3a;
+  border: none;
+  color: #FFFFFF;
+  padding: 15px 25px;
+  height: 60px;
+  border-radius: 30px;
   width: 100%;
 }
 
+.input::placeholder {
+  color: gray;
+}
+
 .input:focus {
-  border-color: #00bcd4;
-  box-shadow: 0 2px 15px #00bcd4;
-  color: #00bcd4;
+  border-color: #3A9FFD;
+  box-shadow: 0 2px 15px #3A9FFD;
+  color: #FFFFFF;
   outline: none;
+}
+
+.form-group {
+  margin-bottom: 5px;
 }
 
 .textarea {

@@ -33,10 +33,11 @@ function Login()
                         <label htmlFor="password"> Password </label>
                         <Input type="password" name="password" className="input" placeholder="Enter Password" />
                     </div>
-                    <hr />
 
                     {/* Login Button */}
-                    <Button type="submit"> Login </Button>             
+                    <div className="form-group d-grid mt-3">
+                        <Button type="submit"> Login </Button>
+                    </div>             
                 </FormikForm>
             </div>
         );        
