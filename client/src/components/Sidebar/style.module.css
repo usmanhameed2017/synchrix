@@ -18,6 +18,9 @@
     font-size: 2rem;
     font-weight: bold;
     color: #3A9FFD;
+    text-shadow: 0 0 6px #3A9FFD, 0 0 12px #A020F0;
+    box-shadow: 0 0 0 0 1px rgba(58, 159, 253, 0.4),
+             0 0 18px rgba(160, 32, 240, 0.3);  
 }
 
 .logo span {
