@@ -1,7 +1,8 @@
 .container {
   display: flex;
   min-height: 100vh;
-  background-color: #12151d;
+  background: linear-gradient(135deg, rgba(58,159,253,0.15) 0%, rgba(160,32,240,0.15) 100%), #0A0014;
+  backdrop-filter: blur(10px);
 }
 
 /* Main Content */

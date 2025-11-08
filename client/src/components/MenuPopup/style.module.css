@@ -20,7 +20,10 @@
     z-index: 100;
     right: 0;
     top: 100%;
-    background-color: #3a506b;
+    background: rgba(20, 10, 40, 0.65);
+    backdrop-filter: blur(12px);
+    border: rgba(58, 159, 253, 0.3);
+    box-shadow: 0 0 25px rgba(160, 32, 240, 0.2);
     border-radius: 6px;
     width: 200px;
     min-width: 150px;
@@ -41,5 +44,5 @@
 }
 
 .dropdownMenu button:hover {
-    background: #00bcd4;
+    background: rgba(255,255,255,0.05);
 }

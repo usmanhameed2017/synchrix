@@ -1,5 +1,4 @@
 .sidebar {
-    background: #12151d;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -7,7 +6,7 @@
     min-height: 100vh;
     position: relative;
     min-width: 270px;
-    width: 500px;
+    width: 350px;
 }
 
 /* Logo */
@@ -18,8 +17,7 @@
     padding: 15px;
     font-size: 2rem;
     font-weight: bold;
-    background: #00bcd4;
-    color: #12151d;
+    color: #3A9FFD;
 }
 
 .logo span {
@@ -37,7 +35,7 @@
 }
 
 .heading {
-    color: #00bcd4;
+    color: #ffffff;
     font-size: 27px;
     font-weight: bolder;
     letter-spacing: 0.3px;
@@ -63,32 +61,17 @@
 }
 
 .navItem:hover {
-    background: #1f2533;
-    color: #00bcd4;
+    background: rgba(255,255,255,0.05);
+    color: #3A9FFD;
 }
 
 .active {
-  background: #1f2533;
-  color: #00bcd4;
+  background: rgba(255,255,255,0.05);
+  color: #3A9FFD;
 }
 
 .logoutLink {
     font-size: 22px;
-}
-
-/* Toggle button */
-.toggleBtn {
-    position: absolute;
-    bottom: 20px;
-    right: -15px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: none;
-    background: #00bcd4;
-    color: #12151d;
-    cursor: pointer;
-    font-weight: bold;
 }
 
 .groupItem {
