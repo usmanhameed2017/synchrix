@@ -43,10 +43,11 @@ function Signup()
                     <label htmlFor="password"> Password </label>
                     <Input type="password" name="password" className="input" placeholder="Enter Password" />
                 </div>
-                <hr />
 
                 {/* Login Button */}
-                <Button type="submit"> Signup </Button>             
+                <div className="form-group mt-3 d-grid">
+                    <Button type="submit"> Signup </Button>  
+                </div>           
             </FormikForm>
         </div>
     );
