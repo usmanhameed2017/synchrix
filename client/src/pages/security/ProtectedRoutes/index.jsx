@@ -1,6 +1,5 @@
 import { useAuth } from '../../../context/auth';
-import { Outlet } from 'react-router-dom';
-import Restricted from '../Restricted';
+import { Navigate, Outlet } from 'react-router-dom';
 
 function ProtectedRoute() 
 {
@@ -8,7 +7,7 @@ function ProtectedRoute()
 
     // Check authentication
     if(isLoggedIn === null) return "";
-    if(isLoggedIn === false) return <Restricted statusCode={401} message={`UNAUTHORIZED`} />
+    if(isLoggedIn === false) return <Navigate to={`/`} replace />
     
     return <Outlet />;
 }
