@@ -7,17 +7,13 @@ import { showSuccess, showError } from '../utils/toasterMessage';
 // Create instance
 const client = axios.create({
     baseURL: `${backendURL}/api/v1`,
-    withCredentials: true,
-    withXSRFToken: true, 
-    xsrfCookieName: '_csrf',
-    xsrfHeaderName: 'CSRF-Token'
+    withCredentials: true
 });
 
-// Initialize CSRF Token
-export const initCsrfToken = async () => {
-    const response = await client.get("/auth/csrfToken");
-    const token = response.data;
-    client.defaults.headers.common["CSRF-Token"] = token;
+// Obtain XSRF Token
+export const obtainXSRFToken = async () => {
+    const token = (await client.get("/auth/xsrfToken")).data;
+    client.defaults.headers.common["X-XSRF-Token"] = token;
 };
 
 // Request interceptor
