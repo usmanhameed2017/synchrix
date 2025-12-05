@@ -1,5 +1,5 @@
 // Ports and origins
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8002;
 const origin = process.env.ORIGIN;
 
 // Database
