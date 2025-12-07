@@ -15,7 +15,7 @@ authRouter.route("/user/signup").post(signup);
 authRouter.route("/user/login").post(login);
 
 // Verify access token
-authRouter.route("/user/isAuthenticated").get(authentication, isAuthenticated);
+authRouter.route("/user/isAuthenticated").get(isAuthenticated);
 
 // Logout
 authRouter.route("/user/logout").get(authentication, logout);
