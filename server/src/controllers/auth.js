@@ -67,9 +67,18 @@ const login = async (request, response) => {
 
         // Generate access token
         const accessToken = jwt.generateAccessToken(user);
+        if(!accessToken) throw new ApiError(500, "Failed to generate access token");
+
+        // Prepare payload
+        const payload = {
+            user:{ name:user.name, email:user.email, username:user.username },
+            accessToken
+        };
+
+        // Response
         return response.status(200)
         .cookie("accessToken", accessToken, cookieOptions)
-        .json(new ApiResponse(200, { user, accessToken }, "Login successful"));
+        .json(new ApiResponse(200, payload, "Login successful"));
     }
     catch(error)
     {
