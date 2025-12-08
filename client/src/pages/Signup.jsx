@@ -2,6 +2,7 @@ import FormikForm from '../components/FormikForm';
 import Input from '../components/InputFields';
 import Button from '../components/Button';
 import { useAuth } from '../context/auth';
+import { Link } from 'react-router-dom';
 
 function Signup() 
 {
@@ -44,10 +45,15 @@ function Signup()
                     <Input type="password" name="password" className="input" placeholder="Enter Password" />
                 </div>
 
-                {/* Login Button */}
+                {/* Signup Button */}
                 <div className="form-group mt-3 d-grid">
                     <Button type="submit"> Signup </Button>  
-                </div>           
+                </div>  
+
+                {/* Login link */}
+                <div className="form-group d-grid mt-3 ms-2">
+                    <Link to={`/`} title='Back to sign-in'> Already have an account? </Link>
+                </div>                       
             </FormikForm>
         </div>
     );

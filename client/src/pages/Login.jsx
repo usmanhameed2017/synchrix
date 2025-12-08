@@ -2,7 +2,7 @@ import FormikForm from '../components/FormikForm';
 import Input from '../components/InputFields';
 import Button from '../components/Button';
 import { useAuth } from '../context/auth';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { userData } from '../utils/getUser';
 
 function Login() 
@@ -37,7 +37,12 @@ function Login()
                     {/* Login Button */}
                     <div className="form-group d-grid mt-3">
                         <Button type="submit"> Login </Button>
-                    </div>             
+                    </div>   
+
+                    {/* Signup link */}
+                    <div className="form-group d-grid mt-3 ms-2">
+                        <Link to={`/signup`} title='Create account'> Don't have an account? </Link>
+                    </div>                                  
                 </FormikForm>
             </div>
         );        
