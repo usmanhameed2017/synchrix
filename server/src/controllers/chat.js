@@ -77,7 +77,7 @@ const updatePrivateMessage = async (request, response) => {
 
         // Broadcast
         const broadcast = new SocketIOService(request.io);
-        broadcast.private(chat?.from, chat?.to, "message-updated", chat);
+        broadcast.private(chat.from, chat.to, "message-updated", chat);
 
         // Response
         return response.status(200).json(new ApiResponse(200, chat, "Messages has been updated"));
@@ -98,7 +98,7 @@ const deletePrivateMessage = async (request, response) => {
 
         // Broadcast
         const broadcast = new SocketIOService(request.io);
-        broadcast.private(chat?.from, chat?.to, "message-deleted", chat);
+        broadcast.private(chat.from, chat.to, "message-deleted", chat);
 
         // Response
         return response.status(200).json(new ApiResponse(200, chat, "Messages has been deleted"));
