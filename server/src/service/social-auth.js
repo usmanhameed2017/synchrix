@@ -21,14 +21,11 @@ async (accessToken, refreshToken, profile, done) => {
         const existingUser = await User.findOne({ $or:[{ gid:gid }, { email:email }] });
         if(existingUser) return done(null, existingUser);
     
+        // Prepare payload
+        const payload = { gid, name, email, username, password:`GoogleAccount:${gid}`, status:"Approved" };
+
         // Create new user
-        const createUser = await User.create({
-            gid:gid,
-            name:name,
-            email:email,
-            username:username,
-            password:`GoogleAccount:${gid}`
-        });
+        const createUser = await User.create(payload);
         return done(null, createUser);
     } 
     catch(error) 
