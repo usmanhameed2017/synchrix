@@ -71,7 +71,7 @@ const login = async (request, response) => {
 
         // Prepare payload
         const payload = {
-            user:{ name:user.name, email:user.email, username:user.username },
+            user:{ _id:user._id, name:user.name, email:user.email, username:user.username },
             accessToken
         };
 
