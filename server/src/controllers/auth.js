@@ -5,6 +5,7 @@ const ApiError = require("../utils/ApiError");
 const ApiResponse = require("../utils/ApiResponse");
 const crypto = require("crypto");
 const { getAccessToken } = require("../utils/getAccessToken");
+const { origin } = require("../constants");
 
 // Initialize XSRF Token
 const initXsrfToken = async (request, response) => {
@@ -86,6 +87,20 @@ const login = async (request, response) => {
     }
 };
 
+// Login as gmail
+const googleLogin = async (request, response) => {
+    if(!request.user) throw new ApiError(404, "User not found");
+
+    // Generate access token
+    const accessToken = jwt.generateAccessToken(request.user);
+    if(!accessToken) throw new ApiError(400, "Failed to generate access token");
+
+    // Redirect to application
+    return response.status(303)
+    .cookie("accessToken", accessToken, cookieOptions)
+    .redirect(`${origin}/home`);
+}
+
 // Verify authentication
 const isAuthenticated = async (request, response) => {
     // Get token
@@ -107,4 +122,4 @@ const logout = async (request, response) => {
     .json(new ApiResponse(200, null, "Logout successfully"));
 };
 
-module.exports = { initXsrfToken, signup, login, isAuthenticated, logout };
+module.exports = { initXsrfToken, signup, login, googleLogin, isAuthenticated, logout };
