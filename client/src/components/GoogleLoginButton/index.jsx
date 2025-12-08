@@ -6,7 +6,7 @@ function GoogleLoginButton()
     // Public url of google login button
     const src = "https://developers.google.com/identity/images/g-logo.png";
     return (
-        <a href={`${backendURL}/api/v1/user/auth/google`}>
+        <a href={`${backendURL}/api/v1/auth/google`}>
             <button type='button' className={styles.googleBtn}>
                 <img src={src} alt="Google Logo" className={styles.image} />
                 Sign in with Google
