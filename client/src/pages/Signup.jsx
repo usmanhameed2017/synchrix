@@ -4,6 +4,7 @@ import Button from '../components/Button';
 import { useAuth } from '../context/auth';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import GoogleLoginButton from '../components/GoogleLoginButton';
 
 function Signup() 
 {
@@ -96,7 +97,11 @@ function Signup()
                 {/* Login link */}
                 <div className="form-group d-grid mt-3 ms-2">
                     <Link to={`/`} title='Back to sign-in'> Already have an account? </Link>
-                </div>                       
+                </div>
+                <hr />
+
+                {/* Google Login Button */}
+                <GoogleLoginButton text='Sign up with Google' />                                    
             </FormikForm>
         </div>
     );
