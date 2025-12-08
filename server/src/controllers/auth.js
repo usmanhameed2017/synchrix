@@ -62,7 +62,7 @@ const login = async (request, response) => {
         if(!user) throw new ApiError(400, "Invalid username");
 
         // Match password
-        const isMatched = await user.matchPassword(user.password);
+        const isMatched = await user.matchPassword(password);
         if(!isMatched) throw new ApiError(400, "Incorrect password");
 
         // Generate access token
