@@ -13,9 +13,11 @@ async (accessToken, refreshToken, profile, done) => {
     {
         // Extract properties
         const gid = profile?.id;
-        const name = `${profile?.name?.givenName} ${profile?.name?.familyName}`;
+        const firstName = profile?.name?.givenName || "";
+        const lastName  = profile?.name?.familyName || "";
+        const name = `${firstName} ${lastName}`.trim();
         const email = profile?.emails?.[0]?.value;
-        const username = profile?.name?.givenName;
+        const username = email;
 
         // If user already exist in database
         const existingUser = await User.findOne({ $or:[{ gid:gid }, { email:email }] });
