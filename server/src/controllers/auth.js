@@ -21,8 +21,26 @@ const initXsrfToken = async (request, response) => {
 const signup = async (request, response) => {
     try 
     {
-        const user = await User.create(request.body);
-        return response.status(201).json(new ApiResponse(201, user, "Account has been created"));
+        // Validate fields
+        const { name, email, username, password, cpassword } = request.body;
+        if(!name) throw new ApiError(400, "Name is required");
+        if(!email) throw new ApiError(400, "Email is required");
+        if(!username) throw new ApiError(400, "Username is required");
+        if(!password) throw new ApiError(400, "Password is required");
+        if(!cpassword) throw new ApiError(400, "Confirm Password is required");
+        if(password !== cpassword) throw new ApiError(400, "Password and confirm password must be identical");
+
+        // Prepare payload
+        const payload = { gid:null, name, email, username, password };
+
+        // Insert in db
+        const user = await User.create(payload);
+        if(!user) throw new ApiError(400, "Failed to register user");
+
+        // Exclude fields
+        delete payload.password;
+        delete payload.gid;
+        return response.status(201).json(new ApiResponse(201, payload, "Account has been created"));
     } 
     catch (error) 
     {
@@ -34,13 +52,23 @@ const signup = async (request, response) => {
 const login = async (request, response) => {
     try 
     {
-        const { username, password } = request.body || {};
-        const user = await User.findOne({ username, password });
-        if(!user) throw new ApiError(400, "Invalid username or password");
+        // Validate fields
+        const { username, password } = request.body;
+        if(!username) throw new ApiError(400, "Username is required");
+        if(!password) throw new ApiError(400, "Password is required");
+
+        // Find user
+        const user = await User.findOne({ username });
+        if(!user) throw new ApiError(400, "Invalid username");
+
+        // Match password
+        const isMatched = await user.matchPassword(user.password);
+        if(!isMatched) throw new ApiError(400, "Incorrect password");
 
         // Generate access token
         const accessToken = jwt.generateAccessToken(user);
-        return response.status(200).cookie("accessToken", accessToken, cookieOptions)
+        return response.status(200)
+        .cookie("accessToken", accessToken, cookieOptions)
         .json(new ApiResponse(200, { user, accessToken }, "Login successful"));
     }
     catch(error)
@@ -60,7 +88,7 @@ const isAuthenticated = async (request, response) => {
     if(!user) throw new ApiError(401, "Invalid or expired token");
 
     // Response
-    return response.status(200).json(new ApiResponse(200, user, "Authenticated"));
+    return response.status(200).json(new ApiResponse(200, { user, accessToken }, "Authenticated"));
 };
 
 // User logout

@@ -5,6 +5,7 @@ import { connectSocket, disconnectSocket } from '../service/socket';
 import { useChat } from './chat';
 import { getUser } from '../utils/getUser';
 import api, { obtainXSRFToken } from '../service/axios';
+import { removeFromLocalStorage } from '../utils/localStorage';
 
 // Create auth context
 const AuthContext = createContext();
@@ -77,11 +78,18 @@ function AuthProvider({ children })
     const isAuthenticated = useCallback(async () => {
         try 
         {
-            const response = await api.get({ url:"/auth/user/isAuthenticated", enableErrorMessage:false });
-            connectSocket(response.data?.accessToken); // Connect socket
+            const response = await api.get({ url:"/auth/user/isAuthenticated" });
+            if(!response.data)
+            {
+                setUser(null);
+                setLoggedIn(false);
+                removeFromLocalStorage("user");
+                return;
+            }
+            connectSocket(response.data.accessToken); // Connect socket
             setUser(response.data.user);
             setLoggedIn(response.success);
-            getUser(response.data.user);
+            getUser(response.data.user);            
         } 
         catch(error) 
         {
