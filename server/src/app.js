@@ -11,6 +11,7 @@ const http = require("http");
 const socketAuthentication = require("./middlewares/socket");
 const SocketIOService = require("./service/socket");
 const compression = require("compression");
+const passport = require("passport");
 require("./service/social-auth");
 
 // Express app
