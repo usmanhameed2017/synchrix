@@ -3,23 +3,23 @@
   display: flex;
   align-items: center;
   background: linear-gradient(90deg, #3c91e6, #204a85);
-  color: white;
+  color: #ffffff;
+  background-size: 200% 200%;
+  background-position: left center;
   width: 100%;
   font-weight: bold;
   border: none;
   border-radius: 30px;
-  /* padding: 10px 20px; */
   padding: 0.7rem 1.5rem;
   font-size: 1.1rem;
-  transition: all 500ms, transform 0.3s ease-in-out;
+  transition: background-position 0.6s ease;
 }
 
 .googleBtn:hover {
-  background-color: linear-gradient(90deg, #3c91e6, #204a85);
-  box-shadow: 0px 6px 15px #204a85;
+  background-position: right center;
 }
 
-/* Google logo */
+/* Google logo */ 
 .image {
     height: 30px;
     margin-right: 10px;
