@@ -4,6 +4,7 @@ import Button from '../components/Button';
 import { useAuth } from '../context/auth';
 import { Link, Navigate } from 'react-router-dom';
 import { userData } from '../utils/getUser';
+import * as Yup from 'yup';
 
 function Login() 
 {
@@ -13,6 +14,16 @@ function Login()
         password:""
     };
 
+    // Validation schema
+    const validationSchema = Yup.object({
+        username:Yup.string()
+        .lowercase()
+        .required('Username is required'),
+
+        password:Yup.string()
+        .required('Password is required'),
+    });    
+
     // Login Handler
     const { userLogin } = useAuth();
 
@@ -21,7 +32,7 @@ function Login()
         return (
             <div className='d-flex align-items-center justify-content-center min-vh-100'>
                 {/* Form */}
-                <FormikForm initialValues={initialValues} handlerFunction={userLogin} heading="LOGIN">
+                <FormikForm initialValues={initialValues} validationSchema={validationSchema} handlerFunction={userLogin} heading="LOGIN">
                     {/* Username */}
                     <div className="form-group">
                         <label htmlFor="username"> Username </label>
