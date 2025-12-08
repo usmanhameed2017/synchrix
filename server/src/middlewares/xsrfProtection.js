@@ -14,7 +14,6 @@ const xsrfProtection = (request, response, next) => {
 
             // Validate tokens
             if(!clientToken) throw new ApiError(400, "Client token is missing");
-            if(serverToken === undefined) throw new ApiError(400, "Server token is missing");
             if(serverToken === false) throw new ApiError(403, "Invalid XSRF token — token integrity check failed");
             if(!serverToken) throw new ApiError(400, "Server token is missing");
             if(clientToken !== serverToken) throw new ApiError(403, "XSRF Token mismatch");
