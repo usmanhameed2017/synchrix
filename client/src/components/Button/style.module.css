@@ -1,16 +1,16 @@
 .buttonTheme {
   padding: 0.7rem 1.5rem;
-  background: linear-gradient(135deg, #3A9FFD, #A020F0);
+  background: linear-gradient(135deg, #4628cc, #cc28c4, #4628cc);
   color: #ffffff;
+  background-size: 200% 200%;
+  background-position: left center;
   border: none;
   border-radius: 30px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-position 0.6s ease;
 }
 
 .buttonTheme:hover {
-  background-color: #3A9FFD;
-  box-shadow: 0px 6px 15px #3A9FFD;
+  background-position: right center;
 }
