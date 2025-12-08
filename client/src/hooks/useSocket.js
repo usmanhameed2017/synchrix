@@ -7,10 +7,10 @@ function useSocket(event, callback)
         if(!socket || !event || typeof callback !== "function") return;
 
         // Listen for event
-        socket?.on(event, callback);
+        socket.on(event, callback);
 
         // Cleanup on unmount
-        return () => socket?.off(event, callback);
+        return () => socket.off(event, callback);
     }, [event, callback]);
 }
 
