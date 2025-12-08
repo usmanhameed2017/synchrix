@@ -7,6 +7,7 @@ const userSchema = new Schema({
     email:{ type:String, trim:true, lowercase:true, unique:[true, "This email has already taken. Please try different email address"], required:true },
     username:{ type:String, trim:true, lowercase:true, unique:[true, "This username is already in use"], index:true, required:[true, "Username is required"] },
     password:{ type:String, trim:true, required:[true, "Password is required"] },
+    status:{ type:String, trim:true, enum:["Pending", "Approved", "Block"], default:"Pending", required:true },
     onlineStatus:{ type:String, trim:true, enum:["Online", "Offline"], default:"Offline", required:true }
 }, { timestamps:true });
 
