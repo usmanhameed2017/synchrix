@@ -3,6 +3,7 @@ import Input from '../components/InputFields';
 import Button from '../components/Button';
 import { useAuth } from '../context/auth';
 import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
 
 function Signup() 
 {
@@ -11,16 +12,52 @@ function Signup()
         name:"",
         email:"",
         username:"",
-        password:""
+        password:"",
+        cpassword:""
     };
 
-    // Login Handler
+    // Validation schema
+    const validationSchema = Yup.object({
+        // Name
+        name:Yup.string()
+        .min(3, "Name must be at least 3 characters long")
+        .max(30, "Name must not be longer than 30 characters")
+        .required("Name is required"),
+
+        // Email
+        email: Yup.string()
+        .strict(true)
+        .lowercase("Email must contain lowercase letters")
+        .min(6, "Email must be at least 6 characters long")
+        .max(30, "Email must not be longer than 30 characters")
+        .email("Invalid email")
+        .required("Email is required"),
+
+        // Username
+        username: Yup.string()
+        .matches(/^[a-z0-9_@]+$/, "Username can only contain lowercase letters, underscore (_) and @")
+        .min(6, "Username must be at least 6 characters long")
+        .max(20, "Username must not be longer than 20 characters")
+        .required("Username is required"),
+
+        // Password
+        password:Yup.string()
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/, "Enter strong password")
+        .required('Password is required'),
+
+        // Confirm Password
+        cpassword:Yup.string()
+        .oneOf([Yup.ref('password'), null], "Password & confirm password must be identical")
+        .required('Confirm password is required')
+    });      
+
+    // Signup Handler
     const { userSignup } = useAuth();
 
     return (
         <div className='d-flex align-items-center justify-content-center min-vh-100'>
             {/* Form */}
-            <FormikForm initialValues={initialValues} handlerFunction={userSignup} heading="SIGNUP">
+            <FormikForm initialValues={initialValues} validationSchema={validationSchema} handlerFunction={userSignup} heading="SIGNUP">
                 {/* Name */}
                 <div className="form-group">
                     <label htmlFor="name"> Name </label>
@@ -44,6 +81,12 @@ function Signup()
                     <label htmlFor="password"> Password </label>
                     <Input type="password" name="password" className="input" placeholder="Enter Password" />
                 </div>
+
+                {/* Confirm Password */}
+                <div className="form-group">
+                    <label htmlFor="cpassword"> Confirm Password </label>
+                    <Input type="password" name="cpassword" className="input" placeholder="Re-Enter Password" />
+                </div>                
 
                 {/* Signup Button */}
                 <div className="form-group mt-3 d-grid">
