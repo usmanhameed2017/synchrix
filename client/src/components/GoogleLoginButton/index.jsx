@@ -1,7 +1,7 @@
 import { backendURL } from "../../constants";
 import styles from "./style.module.css";
 
-function GoogleLoginButton() 
+function GoogleLoginButton({ text = "Sign in with Google" }) 
 {
     // Public url of google login button
     const src = "https://developers.google.com/identity/images/g-logo.png";
