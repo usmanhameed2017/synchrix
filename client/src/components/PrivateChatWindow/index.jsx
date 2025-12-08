@@ -79,7 +79,7 @@ function PrivateChatWindow()
 
                 {/* Online Status */}
                 <span className={styles.status}>
-                    {selectedUser.onlineStatus === "Online" ? "🟢 Online" : "⚪ Offline"}
+                    { selectedUser.onlineStatus === "Online" ? <span> Online </span> : <span> Offline </span> }
                 </span>
                 <span>
                     <MenuPopup item={selectedUser} options={privateChatTabMenu} />

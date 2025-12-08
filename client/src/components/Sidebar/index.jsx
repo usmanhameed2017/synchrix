@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./style.module.css";
-import { FaSignOutAlt, FaUserAlt, FaUsers, FaLayerGroup, FaPlus } from "react-icons/fa";
+import { FaSignOutAlt, FaUserAlt, FaUsers, FaLayerGroup, FaPlus, FaCircle  } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import useSocket from "../../hooks/useSocket";
@@ -231,7 +231,10 @@ function Sidebar()
                     {users.map(user => (
                         user?._id !== userData?._id && (
                             <NavLink className={styles.navItem} key={user?._id} onClick={ () => selectUser(user) }>
-                                {user.name} <span> { user.onlineStatus === "Online" ? "🟢" : "⚪"  } </span>
+                                { user.name }  
+                                <span className="me-1"> 
+                                    { <FaCircle color={user.onlineStatus === "Online" ? "green" : "gray"} size={12} /> } 
+                                </span>
                             </NavLink>
                         )
                     ))}
