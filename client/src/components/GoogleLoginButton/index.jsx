@@ -9,7 +9,7 @@ function GoogleLoginButton({ text = "Sign in with Google" })
         <a href={`${backendURL}/api/v1/auth/google`}>
             <button type='button' className={styles.googleBtn}>
                 <img src={src} alt="Google Logo" className={styles.image} />
-                Sign in with Google
+                { text }
             </button>
         </a>
 
