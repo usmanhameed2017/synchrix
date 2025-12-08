@@ -32,7 +32,7 @@ const signup = async (request, response) => {
         if(password !== cpassword) throw new ApiError(400, "Password and confirm password must be identical");
 
         // Prepare payload
-        const payload = { gid:null, name, email, username, password };
+        const payload = { name, email, username, password };
 
         // Insert in db
         const user = await User.create(payload);
