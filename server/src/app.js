@@ -11,6 +11,7 @@ const http = require("http");
 const socketAuthentication = require("./middlewares/socket");
 const SocketIOService = require("./service/socket");
 const compression = require("compression");
+require("./service/social-auth");
 
 // Express app
 const app = express();
@@ -25,6 +26,7 @@ const io = new Server(server, { cors:corsOptions });
 app.use(cors(corsOptions));
 app.use(cookieParser(cookieParserSecret));
 app.use(xsrfProtection);
+app.use(passport.initialize());
 app.use(express.urlencoded({ extended:true, limit:"50kb" }));
 app.use(express.json({ limit:"50kb" }));
 app.use("/public", express.static(path.resolve("public")));
