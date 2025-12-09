@@ -13,6 +13,7 @@ const Signup = lazy(() => import("./pages/Signup"));
 const Login = lazy(() => import("./pages/Login"));
 const ProtectedRoute = lazy(() => import("./pages/security/ProtectedRoutes"));
 const Home = lazy(() => import("./pages/Home"));
+const PrivacyPolicy = lazy(() => import("./pages/Privacy-Policy"));
 
 function App() 
 {
@@ -27,6 +28,7 @@ function App()
                 <Route path="/" element={ <Login /> } />
                 <Route path="/login" element={ <Login /> } />
                 <Route path="/signup" element={ <Signup /> } />
+                <Route path="/privacy-policy" element={ <PrivacyPolicy /> } />
 
                 {/* Protected Route */}
                 <Route element={ <ProtectedRoute /> }>
