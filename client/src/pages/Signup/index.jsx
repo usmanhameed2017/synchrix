@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import GoogleLoginButton from '../../components/GoogleLoginButton';
 import FormBox from '../../components/FormBox';
+import FacebookLoginButton from '../../components/FacebookLoginButton';
 
 function Signup() 
 {
@@ -103,7 +104,10 @@ function Signup()
                     <hr />
 
                     {/* Google Login Button */}
-                    <GoogleLoginButton text='Sign up with Google' />                                    
+                    <GoogleLoginButton text='Sign up with Google' /> 
+
+                    {/* Facebook Login Button */}
+                    <FacebookLoginButton text='Sign up with Facebook' />                                                       
                 </FormikForm>
             </FormBox>
         </div>
