@@ -1,11 +1,11 @@
-import FormikForm from '../components/FormikForm';
-import Input from '../components/InputFields';
-import Button from '../components/Button';
-import { useAuth } from '../context/auth';
+import FormikForm from '../../components/FormikForm';
+import Input from '../../components/InputFields';
+import Button from '../../components/Button';
+import { useAuth } from '../../context/auth';
 import { Link, Navigate } from 'react-router-dom';
-import { userData } from '../utils/getUser';
+import { userData } from '../../utils/getUser';
 import * as Yup from 'yup';
-import GoogleLoginButton from '../components/GoogleLoginButton';
+import GoogleLoginButton from '../../components/GoogleLoginButton';
 
 function Login() 
 {
