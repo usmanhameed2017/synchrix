@@ -6,7 +6,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { userData } from '../../utils/getUser';
 import * as Yup from 'yup';
 import GoogleLoginButton from '../../components/GoogleLoginButton';
-import styles from './style.module.css';
+import FormBox from '../../components/FormBox';
 
 function Login() 
 {
@@ -33,8 +33,7 @@ function Login()
     {
         return (
             <div className='d-flex align-items-center justify-content-center min-vh-100'>
-                <div className={styles.container}>
-                    <h1 className={styles.heading}>Synchrix</h1>
+                <FormBox>
                     {/* Form */}
                     <FormikForm initialValues={initialValues} validationSchema={validationSchema} handlerFunction={userLogin} heading="LOGIN">
                         {/* Username */}
@@ -63,7 +62,7 @@ function Login()
                         {/* Google Login Button */}
                         <GoogleLoginButton />                                                    
                     </FormikForm>
-                </div>
+                </FormBox>
             </div>
         );        
     }
