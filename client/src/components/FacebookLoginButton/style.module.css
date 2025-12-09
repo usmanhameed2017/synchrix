@@ -1,0 +1,29 @@
+.facebookButton {
+    display: flex;
+    align-items: center;
+    border: none;
+    width: 100%;
+    background: linear-gradient(90deg, #3c91e6, #204a85);
+    background-size: 200% 200%;
+    background-position: left center;
+    border-radius: 30px;
+    padding: 0.7rem 1.5rem;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: background-position 0.6s ease;
+}
+
+.facebookButton:hover {
+  background-position: right center;
+}
+
+
+.facebookButton img {
+    height: 30px;
+    margin-right: 10px;
+    background-color: white;
+    border-radius: 50%;
+    padding: 2px;
+}
