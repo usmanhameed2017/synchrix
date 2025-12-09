@@ -16,11 +16,11 @@ body {
 
 a{
   text-decoration: none;
-  color: #B3E9FF;
+  color: #38bdf8;
 }
 
 a:hover {
-  color: #93cee6;
+  color: #08b3fc;
 }
 
 .textTheme {
@@ -28,7 +28,7 @@ a:hover {
 }
 
 label {
-  color: #e5e7eb;
+  color: #38bdf8;
   font-size: 19px;
   font-weight: 100;
   margin-bottom: 2px;
