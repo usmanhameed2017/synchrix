@@ -101,6 +101,20 @@ const googleLogin = async (request, response) => {
     .redirect(`${origin}/home`);
 }
 
+// Login as facebook
+const facebookLogin = (request, response) => {
+    if(!request.user) throw new ApiError(404, "User not found");
+
+    // Generate access token
+    const accessToken = jwt.generateAccessToken(request.user);
+    if(!accessToken) throw new ApiError(400, "Failed to generate access token");
+
+    // Redirect to application
+    return response.status(303)
+    .cookie("accessToken", accessToken, cookieOptions)
+    .redirect(`${origin}/home`);
+}
+
 // Verify authentication
 const isAuthenticated = async (request, response) => {
     // Get token
@@ -122,4 +136,4 @@ const logout = async (request, response) => {
     .json(new ApiResponse(200, null, "Logout successfully"));
 };
 
-module.exports = { initXsrfToken, signup, login, googleLogin, isAuthenticated, logout };
+module.exports = { initXsrfToken, signup, login, googleLogin, facebookLogin, isAuthenticated, logout };
