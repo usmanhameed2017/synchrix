@@ -5,6 +5,7 @@ import { useAuth } from '../../context/auth';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import GoogleLoginButton from '../../components/GoogleLoginButton';
+import FormBox from '../../components/FormBox';
 
 function Signup() 
 {
@@ -57,52 +58,54 @@ function Signup()
 
     return (
         <div className='d-flex align-items-center justify-content-center min-vh-100'>
-            {/* Form */}
-            <FormikForm initialValues={initialValues} validationSchema={validationSchema} handlerFunction={userSignup} heading="SIGNUP">
-                {/* Name */}
-                <div className="form-group">
-                    <label htmlFor="name"> Name </label>
-                    <Input type="text" name="name" className="input" placeholder="Enter Name" />
-                </div>
+            <FormBox>
+                {/* Form */}
+                <FormikForm initialValues={initialValues} validationSchema={validationSchema} handlerFunction={userSignup} heading="SIGNUP">
+                    {/* Name */}
+                    <div className="form-group">
+                        <label htmlFor="name"> Name </label>
+                        <Input type="text" name="name" className="input" placeholder="Enter Name" />
+                    </div>
 
-                {/* Email */}
-                <div className="form-group">
-                    <label htmlFor="email"> Email </label>
-                    <Input type="text" name="email" className="input" placeholder="Enter Email" />
-                </div>                
+                    {/* Email */}
+                    <div className="form-group">
+                        <label htmlFor="email"> Email </label>
+                        <Input type="text" name="email" className="input" placeholder="Enter Email" />
+                    </div>                
 
-                {/* Username */}
-                <div className="form-group">
-                    <label htmlFor="username"> Username </label>
-                    <Input type="text" name="username" className="input" placeholder="Enter Username" />
-                </div>
+                    {/* Username */}
+                    <div className="form-group">
+                        <label htmlFor="username"> Username </label>
+                        <Input type="text" name="username" className="input" placeholder="Enter Username" />
+                    </div>
 
-                {/* Password */}
-                <div className="form-group">
-                    <label htmlFor="password"> Password </label>
-                    <Input type="password" name="password" className="input" placeholder="Enter Password" />
-                </div>
+                    {/* Password */}
+                    <div className="form-group">
+                        <label htmlFor="password"> Password </label>
+                        <Input type="password" name="password" className="input" placeholder="Enter Password" />
+                    </div>
 
-                {/* Confirm Password */}
-                <div className="form-group">
-                    <label htmlFor="cpassword"> Confirm Password </label>
-                    <Input type="password" name="cpassword" className="input" placeholder="Re-Enter Password" />
-                </div>                
+                    {/* Confirm Password */}
+                    <div className="form-group">
+                        <label htmlFor="cpassword"> Confirm Password </label>
+                        <Input type="password" name="cpassword" className="input" placeholder="Re-Enter Password" />
+                    </div>                
 
-                {/* Signup Button */}
-                <div className="form-group mt-3 d-grid">
-                    <Button type="submit"> Signup </Button>  
-                </div>  
+                    {/* Signup Button */}
+                    <div className="form-group mt-3 d-grid">
+                        <Button type="submit"> Signup </Button>  
+                    </div>  
 
-                {/* Login link */}
-                <div className="form-group d-grid mt-3 ms-2">
-                    <Link to={`/`} title='Back to sign-in'> Already have an account? </Link>
-                </div>
-                <hr />
+                    {/* Login link */}
+                    <div className="form-group d-grid mt-3 ms-2">
+                        <Link to={`/`} title='Back to sign-in'> Already have an account? </Link>
+                    </div>
+                    <hr />
 
-                {/* Google Login Button */}
-                <GoogleLoginButton text='Sign up with Google' />                                    
-            </FormikForm>
+                    {/* Google Login Button */}
+                    <GoogleLoginButton text='Sign up with Google' />                                    
+                </FormikForm>
+            </FormBox>
         </div>
     );
 }
