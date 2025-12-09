@@ -7,6 +7,7 @@ import { userData } from '../../utils/getUser';
 import * as Yup from 'yup';
 import GoogleLoginButton from '../../components/GoogleLoginButton';
 import FormBox from '../../components/FormBox';
+import FacebookLoginButton from '../../components/FacebookLoginButton';
 
 function Login() 
 {
@@ -60,7 +61,10 @@ function Login()
                         <hr />
 
                         {/* Google Login Button */}
-                        <GoogleLoginButton />                                                    
+                        <GoogleLoginButton />  
+
+                        {/* Facebook Login Button */}
+                        <FacebookLoginButton />
                     </FormikForm>
                 </FormBox>
             </div>
