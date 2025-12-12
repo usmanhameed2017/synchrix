@@ -3,6 +3,8 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const { corsOptions } = require("./config");
+const helmet = require("helmet");
+const limitRequest = require("./middlewares/rateLimit");
 const { cookieParserSecret } = require("./constants");
 const { xsrfProtection } = require("./middlewares/xsrfProtection");
 const errorHandler = require("./middlewares/errorHandler");
@@ -25,6 +27,8 @@ const io = new Server(server, { cors:corsOptions });
 
 // ************* MIDDLEWARES ************* //
 app.use(cors(corsOptions));
+app.use(helmet());
+app.use(limitRequest({ maxRequests:40 }));
 app.use(cookieParser(cookieParserSecret));
 app.use(xsrfProtection);
 app.use(passport.initialize());
@@ -51,15 +55,14 @@ const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const chatRouter = require("./routes/chat");
 const groupRouter = require("./routes/group");
+const statusRouter = require("./routes/status");
 
 // Registered routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/chat", chatRouter);
 app.use("/api/v1/group", groupRouter);
-app.get("/api/v1/status", (request, response) => {
-    return response.status(200).json({ status:200, message:"Hello from Usman Hameed! Server is up and running", app:"Synchrix" });
-});
+app.get("/api/v1/status", statusRouter);
 
 // Error handling middleware
 app.use(errorHandler);
